@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: transform_data
+display_name: transform Data in Azure ML
+version: 1
+type: command
+inputs:
+  input_data: 
+    type: uri_folder
+    description: Directory containing multiple CSV files
+  feature_transformer_name:
+    type: string
+    description: Name of the feature transformer to use
+outputs:
+   output_data:
+     type: uri_folder
+     description: output the transformed data here for the batch prediction endpoint
+code: .
+environment: azureml:accident-prediction-environment:1
+command: >-
+  python transform_data.py 
+  --input_data ${{inputs.input_data}}
+  --feature_transformer_name ${{inputs.feature_transformer_name}}
+  --output_data ${{outputs.output_data}}

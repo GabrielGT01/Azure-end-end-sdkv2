@@ -1,0 +1,16 @@
+name: accident-prediction-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - mlflow
+      - pandas
+      - scikit-learn
+      - numpy
+      - azureml-core  
+      - azureml-defaults
+      - fsspec 
+      - azure-identity
+      - azure-ai-ml

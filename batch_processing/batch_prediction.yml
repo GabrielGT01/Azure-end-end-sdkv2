@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: batch_prediction
+display_name: Batch Prediction
+version: 1
+type: command
+inputs:
+  training_data:
+    type: uri_folder
+    description: Input data for batch prediction
+  model_name:
+    type: string
+    default: accident-survival-model
+    description: Name of the model to use for prediction
+outputs:
+  predictions:
+    type: uri_folder
+    description: Output directory for predictions
+code: .
+environment: azureml:accident-prediction-environment@latest
+command: >-
+  python batch_scoring.py
+  --training_data_path ${{inputs.training_data}}
+  --model_name ${{inputs.model_name}}
